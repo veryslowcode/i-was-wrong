@@ -1,0 +1,127 @@
+#+TITLE: Veryslow Emacs Config
+#+AUTHOR: veryslowcode
+#+STARTUP: showeverything
+
+* Packages
+
+** Package Archives
+
+#+begin_src emacs-lisp
+  (require 'package)
+
+  ;; Enable package archives from both standard and melpa
+  (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+			   ("org" . "https://orgmode.org/elpa/")
+			   ("elpa" . "https://elpa.gnu.org/packages/")))
+  (package-initialize)
+#+end_src
+
+** Use Package
+
+#+begin_src emacs-lisp
+  ;; Install use-package if not already installed
+  (unless (package-installed-p 'use-package)
+    (package-install 'use-package))
+
+  (require 'use-package)
+  (setq use-package-always-ensure t)  
+#+end_src
+
+* Gerneral
+
+** User Interface
+
+#+begin_src emacs-lisp
+  ;; Turn off uneeded interface elements
+  (tool-bar-mode 0)
+  (scroll-bar-mode 0)
+  (menu-bar-mode 0)
+
+  ;; Disable unwanted interface behaviour
+  (setq inhibit-startup-message t)
+  (setq use-file-dialog nil)
+  (setq use-dialog-box nil)
+  (setq pop-up-windows nil)
+  (setq ring-bell-function 'ignore)
+  
+  (add-hook 'window-setup-hook 'toggle-frame-maximized t)
+#+end_src
+
+** Backups
+
+#+begin_src emacs-lisp
+  ;; Clean up file backups for 1. visual aesthetics and 2. git
+  (setq backup-directory-alist '((".*" . "~/.config/emacs/backup/")))
+#+end_src
+
+** Buffers
+
+#+begin_src emacs-lisp
+  (defun kill-other-buffers ()
+    "Kill all other buffers."
+    (interactive)
+    (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+#+end_src
+
+* Editor
+
+#+begin_src emacs-lisp
+  (global-display-line-numbers-mode 1)
+  (delete-selection-mode 1)  ;; Delete selected text by typing
+  (setq column-number-mode t)
+#+end_src
+
+** Mappings
+
+#+begin_src emacs-lisp
+    (use-package evil
+        :demand t
+        :init
+        :config
+        (evil-mode t))
+#+end_src
+
+** Font
+
+#+begin_src emacs-lisp
+  (set-face-attribute 'default nil
+		      :font "FiraCode Nerd Font Mono"
+		      :height 120
+		      :weight 'medium)
+#+end_src
+
+** Themes
+
+#+begin_src emacs-lisp
+(use-package catppuccin-theme
+  :demand t
+  :config
+  (load-theme 'catppuccin t))
+
+(setq catppuccin-flavor 'mocha) ;; or 'latte, 'macchiato, or 'mocha
+(catppuccin-reload)
+#+end_src
+
+** Dashboard
+
+#+begin_src emacs-lisp
+  (use-package dashboard
+    :ensure t
+    :config
+    (dashboard-setup-startup-hook))
+
+  (setq dashboard-banner-logo-title "Nano beats Emacs and Neovim!")
+  (setq dashboard-startup-banner 'logo)
+  (setq dashboard-items '((bookmarks . 5)
+			  (projects . 5)
+			  (agenda . 5)))
+#+end_src
+
+* Version Control
+
+** Magit
+
+#+begin_src emacs-lisp
+    (use-package magit
+      :ensure t)
+#+end_src

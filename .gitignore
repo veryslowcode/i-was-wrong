@@ -1,0 +1,13 @@
+*.elc
+.cask
+*~
+*.~undo-tree
+*archive
+elpa/
+eshell/
+org-persist/
+recentf
+transient/
+server/
+bookmarks
+eln-cache/
