@@ -9,3 +9,5 @@ org-persist/
 recentf
 transient/
 server/
+bookmarks
+eln-cache/

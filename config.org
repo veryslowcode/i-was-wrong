@@ -42,13 +42,14 @@
   (setq use-file-dialog nil)
   (setq use-dialog-box nil)
   (setq pop-up-windows nil)
+  (setq ring-bell-function 'ignore)
 #+end_src
 
 ** Backups
 
 #+begin_src emacs-lisp
   ;; Clean up file backups for 1. visual aesthetics and 2. git
-  (setq backup-directory-alist '((".*" . "~/.emacs.d/backup/")))
+  (setq backup-directory-alist '((".*" . "~/.config/emacs/backup/")))
 #+end_src
 
 * Editor
@@ -71,7 +72,7 @@
 
 #+begin_src emacs-lisp
   (use-package doom-themes
-      :init (load-theme 'doom-tomorrow-night t))
+      :init (load-theme 'doom-material-dark t))
 #+end_src
 
 ** Transparency
@@ -108,10 +109,11 @@
   (use-package rust-mode)
 #+end_src
 
-* Which Key
+* Company
 
 #+begin_src emacs-lisp
-  (use-package which-key)
-  (which-key-mode)
-  (setq which-key-side-window-location 'bottom)
+  (use-package company
+    :ensure t)
+
+  (add-hook 'after-init-hook 'global-company-mode)
 #+end_src

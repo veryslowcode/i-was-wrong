@@ -23,9 +23,10 @@
 (setq use-file-dialog nil)
 (setq use-dialog-box nil)
 (setq pop-up-windows nil)
+(setq ring-bell-function 'ignore)
 
 ;; Clean up file backups for 1. visual aesthetics and 2. git
-(setq backup-directory-alist '((".*" . "~/.emacs.d/backup/")))
+(setq backup-directory-alist '((".*" . "~/.config/emacs/backup/")))
 
 (global-display-line-numbers-mode 1) ;; Display line numbers
 (delete-selection-mode 1)            ;; Delete selected text by typing
@@ -36,7 +37,7 @@
 		    :weight 'medium)
 
 (use-package doom-themes
-    :init (load-theme 'doom-tomorrow-night t))
+    :init (load-theme 'doom-material-dark t))
 
 ;; Ensure emacs version supports transparency
 ;; and if so, set transparency to 90%
@@ -56,6 +57,7 @@
 
 (use-package rust-mode)
 
-(use-package which-key)
-(which-key-mode)
-(setq which-key-side-window-location 'bottom)
+(use-package company
+  :ensure t)
+
+(add-hook 'after-init-hook 'global-company-mode)
