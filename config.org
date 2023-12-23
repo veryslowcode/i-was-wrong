@@ -107,6 +107,7 @@
 
 #+begin_src emacs-lisp
   (use-package rust-mode)
+  (setq rust-format-on-save t)
 #+end_src
 
 * Company
