@@ -113,7 +113,17 @@
 *** Rust
 
 #+begin_src emacs-lisp
-  (use-package rust-mode)
-  (setq rust-format-on-save t)
-  (add-hook 'rust-mode-hook 'eglot-ensure)
+    (use-package rust-mode
+      :ensure t)
+    (setq rust-format-on-save t)
+    (add-hook 'rust-mode-hook 'eglot-ensure)
+#+end_src
+
+* Terminal
+
+** Vterm
+
+#+begin_src emacs-lisp
+  (use-package vterm
+    :ensure t)
 #+end_src
