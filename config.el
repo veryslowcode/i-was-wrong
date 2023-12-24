@@ -25,11 +25,13 @@
 (setq pop-up-windows nil)
 (setq ring-bell-function 'ignore)
 
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)
+
 ;; Clean up file backups for 1. visual aesthetics and 2. git
 (setq backup-directory-alist '((".*" . "~/.config/emacs/backup/")))
 
-(global-display-line-numbers-mode 1) ;; Display line numbers
-(delete-selection-mode 1)            ;; Delete selected text by typing
+(global-display-line-numbers-mode 1)
+(delete-selection-mode 1)  ;; Delete selected text by typing
 
 (set-face-attribute 'default nil
 		    :font "FiraCode Nerd Font Mono"
@@ -37,13 +39,8 @@
 		    :weight 'medium)
 
 (use-package doom-themes
-    :init (load-theme 'doom-material-dark t))
-
-;; Ensure emacs version supports transparency
-;; and if so, set transparency to 90%
-(unless (version< "29.0.0" emacs-version)
-  (set-frame-parameter (selected-frame) 'alpha-background 90)
-  (add-to-list 'default-frame-alist '(alpha-background . 90)))
+  :ensure t
+  :init (load-theme 'doom-material-dark t))
 
 (use-package dashboard
   :ensure t
@@ -53,11 +50,12 @@
 (setq dashboard-banner-logo-title "Welcome to Emacs")
 (setq dashboard-startup-banner 'logo)
 
-(use-package magit)
-
-(use-package rust-mode)
+(use-package magit
+  :ensure t)
 
 (use-package company
   :ensure t)
 
-(add-hook 'after-init-hook 'global-company-mode)
+(use-package rust-mode)
+(setq rust-format-on-save t)
+(add-hook 'rust-mode-hook 'eglot-ensure)

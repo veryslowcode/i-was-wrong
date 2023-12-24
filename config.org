@@ -43,6 +43,8 @@
   (setq use-dialog-box nil)
   (setq pop-up-windows nil)
   (setq ring-bell-function 'ignore)
+  
+  (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 #+end_src
 
 ** Backups
@@ -55,8 +57,8 @@
 * Editor
 
 #+begin_src emacs-lisp
-  (global-display-line-numbers-mode 1) ;; Display line numbers
-  (delete-selection-mode 1)            ;; Delete selected text by typing
+  (global-display-line-numbers-mode 1)
+  (delete-selection-mode 1)  ;; Delete selected text by typing
 #+end_src
 
 ** Font
@@ -72,20 +74,11 @@
 
 #+begin_src emacs-lisp
   (use-package doom-themes
-      :init (load-theme 'doom-material-dark t))
+    :ensure t
+    :init (load-theme 'doom-material-dark t))
 #+end_src
 
-** Transparency
-
-#+begin_src emacs-lisp
-  ;; Ensure emacs version supports transparency
-  ;; and if so, set transparency to 90%
-  (unless (version< "29.0.0" emacs-version)
-    (set-frame-parameter (selected-frame) 'alpha-background 90)
-    (add-to-list 'default-frame-alist '(alpha-background . 90)))
-#+end_src
-
-* Dashboard
+** Dashboard
 
 #+begin_src emacs-lisp
   (use-package dashboard
@@ -97,24 +90,30 @@
   (setq dashboard-startup-banner 'logo)
 #+end_src
 
-* Git
+* Version Control
+
+** Magit
 
 #+begin_src emacs-lisp
-  (use-package magit)
+    (use-package magit
+      :ensure t)
 #+end_src
 
-* Languages
+* Language
 
-#+begin_src emacs-lisp
-  (use-package rust-mode)
-  (setq rust-format-on-save t)
-#+end_src
-
-* Company
+** Company
 
 #+begin_src emacs-lisp
   (use-package company
     :ensure t)
+#+end_src
 
-  (add-hook 'after-init-hook 'global-company-mode)
+** Languages
+
+*** Rust
+
+#+begin_src emacs-lisp
+  (use-package rust-mode)
+  (setq rust-format-on-save t)
+  (add-hook 'rust-mode-hook 'eglot-ensure)
 #+end_src
