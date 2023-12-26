@@ -126,4 +126,5 @@
 #+begin_src emacs-lisp
   (use-package vterm
     :ensure t)
+  (setq vterm-always-compile-module t)
 #+end_src

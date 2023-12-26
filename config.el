@@ -63,3 +63,4 @@
 
 (use-package vterm
   :ensure t)
+(setq vterm-always-compile-module t)
