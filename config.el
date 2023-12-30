@@ -56,6 +56,9 @@
 
 (setq dashboard-banner-logo-title "Welcome to Emacs")
 (setq dashboard-startup-banner 'logo)
+(setq dashboard-items '((bookmarks . 5)
+			(projects . 5)
+			(agenda . 5)))
 
 (use-package magit
   :ensure t)
@@ -71,3 +74,7 @@
 (use-package vterm
   :ensure t)
 (setq vterm-always-compile-module t)
+
+(use-package projectile
+:config
+(projectile-global-mode 1))
