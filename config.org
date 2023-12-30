@@ -63,6 +63,12 @@
     (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
 #+end_src
 
+** Org Agenda
+
+#+begin_src emacs-lisp
+  (setq org-agenda-files '("~/Development/agenda"))
+#+end_src
+
 * Editor
 
 #+begin_src emacs-lisp

@@ -35,6 +35,8 @@
   (interactive)
   (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
 
+(setq org-agenda-files '("~/Development/agenda"))
+
 (global-display-line-numbers-mode 1)
 (delete-selection-mode 1)  ;; Delete selected text by typing
 
