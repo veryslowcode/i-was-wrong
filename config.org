@@ -74,6 +74,7 @@
 #+begin_src emacs-lisp
   (global-display-line-numbers-mode 1)
   (delete-selection-mode 1)  ;; Delete selected text by typing
+  (setq column-number-mode t)
 #+end_src
 
 ** Font
@@ -131,10 +132,10 @@
 *** Rust
 
 #+begin_src emacs-lisp
-    (use-package rust-mode
-      :ensure t)
-    (setq rust-format-on-save t)
-    (add-hook 'rust-mode-hook 'eglot-ensure)
+  (use-package rust-mode
+    :ensure t)
+  (setq rust-format-on-save t)
+  (add-hook 'rust-mode-hook 'eglot-ensure)
 #+end_src
 
 * Terminal

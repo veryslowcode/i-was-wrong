@@ -39,6 +39,7 @@
 
 (global-display-line-numbers-mode 1)
 (delete-selection-mode 1)  ;; Delete selected text by typing
+(setq column-number-mode t)
 
 (set-face-attribute 'default nil
 		    :font "FiraCode Nerd Font Mono"
