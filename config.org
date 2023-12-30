@@ -54,6 +54,15 @@
   (setq backup-directory-alist '((".*" . "~/.config/emacs/backup/")))
 #+end_src
 
+** Buffers
+
+#+begin_src emacs-lisp
+  (defun kill-other-buffers ()
+    "Kill all other buffers."
+    (interactive)
+    (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+#+end_src
+
 * Editor
 
 #+begin_src emacs-lisp

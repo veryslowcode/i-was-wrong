@@ -30,6 +30,11 @@
 ;; Clean up file backups for 1. visual aesthetics and 2. git
 (setq backup-directory-alist '((".*" . "~/.config/emacs/backup/")))
 
+(defun kill-other-buffers ()
+  "Kill all other buffers."
+  (interactive)
+  (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+
 (global-display-line-numbers-mode 1)
 (delete-selection-mode 1)  ;; Delete selected text by typing
 
