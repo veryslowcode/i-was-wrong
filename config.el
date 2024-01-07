@@ -89,9 +89,9 @@
   :ensure t)
 
 (use-package rust-mode
-    :ensure t)
-;;  (setq rust-format-on-save t)
-  (add-hook 'rust-mode-hook 'eglot-ensure)
+  :ensure t)
+(setq rust-format-on-save t)
+(add-hook 'rust-mode-hook 'eglot-ensure)
 
 (use-package vterm
   :ensure t)

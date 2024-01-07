@@ -169,7 +169,7 @@
 #+begin_src emacs-lisp
   (use-package rust-mode
     :ensure t)
-;;  (setq rust-format-on-save t)
+  (setq rust-format-on-save t)
   (add-hook 'rust-mode-hook 'eglot-ensure)
 #+end_src
 
