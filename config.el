@@ -41,6 +41,8 @@
 (delete-selection-mode 1)  ;; Delete selected text by typing
 (setq column-number-mode t)
 
+(keymap-global-set "C-c e" 'eshell-command)
+
 (set-face-attribute 'default nil
 		    :font "FiraCode Nerd Font Mono"
 		    :height 120
@@ -87,9 +89,9 @@
   :ensure t)
 
 (use-package rust-mode
-  :ensure t)
-(setq rust-format-on-save t)
-(add-hook 'rust-mode-hook 'eglot-ensure)
+    :ensure t)
+;;  (setq rust-format-on-save t)
+  (add-hook 'rust-mode-hook 'eglot-ensure)
 
 (use-package vterm
   :ensure t)
